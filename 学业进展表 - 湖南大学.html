@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)http://hdjw.hnu.edu.cn/Njw2017/index.html#/student/academic-progress-chartxyjc/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="renderer" content="webkit"><meta http-equiv="x-ua-compatible" content="IE=Edge"><title>学业进展表 -  湖南大学</title><link rel="stylesheet" type="text/css" class="theme-el" href="./学业进展表 - 湖南大学_files/index.css"><link rel="stylesheet" type="text/css" class="theme-qz" href="./学业进展表 - 湖南大学_files/index(1).css"><link rel="stylesheet" type="text/css" href="./学业进展表 - 湖南大学_files/qz.biz.css"><link rel="preload" href="./学业进展表 - 湖南大学_files/vue.min.js.下载" as="script"><link rel="preload" href="./学业进展表 - 湖南大学_files/vue-router.min.js.下载" as="script"><link rel="preload" href="./学业进展表 - 湖南大学_files/vuex.min.js.下载" as="script"><link rel="preload" href="./学业进展表 - 湖南大学_files/index.js.下载" as="script"><link rel="preload" href="./学业进展表 - 湖南大学_files/moment.min.js.下载" as="script"><link rel="preload" href="./学业进展表 - 湖南大学_files/qz.config.new.js.下载" as="script"><link rel="preload" href="./学业进展表 - 湖南大学_files/qz.common.js.下载" as="script"><link rel="preload" href="http://static.hdjw.hnu.edu.cn/Njw2017/static/theme/qz-default/fonts/fa-fonts.ttf?dfq65p" as="font" type="font/ttf" crossorigin=""><script>(function() { // TD 87254  
+      var getCookie = (key, simulated = true) => {
+        let cookieArr = document.cookie.split('; ')
+        let val
+        let simulatedBy = simulated ? window.encodeURIComponent(Qz.getCv('simulatedBy')()) : ''
+        for (let i = 0, len = cookieArr.length; i < len; i++) {
+          let arr = cookieArr[i].split('=')
+          if (arr[0] === key) {
+            arr[1] && (val = arr[1])
+          }
+        }
+        if (key === 'token') {
+          if (val) { // 单点登录有cookie
+            localStorage.setItem('qzdatasoft', val)
+            try {
+              Qz.removeCookie('token', true)
+            } catch (e) {
+            }
+          } else {
+            val = localStorage.getItem('qzdatasoft')
+          }
+          return simulatedBy ? `${val}&Simulated-By=${simulatedBy}` : val
+        }
+        return val
+      }
+      let search = window.location.search
+      let hash = window.location.hash
+      let _search = hash.slice(hash.indexOf('?') + 1)
+      let token = getCookie('token', false)
+      if(!token && hash.indexOf('?') > -1 && search.indexOf(_search) === -1) {
+        let str = ''
+        if(search.indexOf('?') > -1) {
+          str = search + '&' + _search
+        }else {
+          str = search + '?' + _search
+        }
+        window.location.search = str
+      }
+    })()</script><style type="text/css">@keyframes resizeanim { from { opacity: 0; } to { opacity: 0; } } 
+      .resize-triggers { animation: 1ms resizeanim; visibility: hidden; opacity: 0; }
+      .resize-triggers, .resize-triggers > div, .contract-trigger:before { content: " "; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; z-index: -1 }
+      .resize-triggers > div { background: #eee; overflow: auto; }
+      .contract-trigger:before { width: 200%; height: 200%; }
+.style1 {
+	background-color: #40E0D0;
+}
+</style><script type="text/javascript">(function () {"use strict";grzx.dashboardService={updateJsjyInfo:function(t){return http.postJSON("PKGL0403_jw.pkgl.pkglInfo.controller.PkjsjyglController.updateJsjyInfo",t)},findByIdshztmList:function(t){return query.queryJSON("PKGL040202_jw.pkgl.pkglInfo.controller.PkjsjyglController.findByIdshztmList",t)}};})()</script><script type="text/javascript">(function () {"use strict";function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,s=Array(e.length);t<e.length;t++)s[t]=e[t];return s}return Array.from(e)}var filterMenu=function e(t,s){var n=!0,r=!1,o=void 0;try{for(var i,a=t[Symbol.iterator]();!(n=(i=a.next()).done);n=!0){var l=i.value;if(l.index===s)return l;var c=e(l.children,s);if(c)return c}}catch(d){r=!0,o=d}finally{try{!n&&a["return"]&&a["return"]()}finally{if(r)throw o}}},_grzx$dashboardServic=grzx.dashboardService,updateJsjyInfo=_grzx$dashboardServic.updateJsjyInfo,findByIdshztmList=_grzx$dashboardServic.findByIdshztmList;Vue.component("course-chart",{template:'<div class="cell center">\n                <div v-if="!!cellData.row[cellData.column.property].ksjms"\n                     v-text="cellData.row[cellData.column.property].ksjms"\n                     class="color-danger">\n                </div>\n                <el-popover placement="right" trigger="click" v-for = "(item, index) in cellData.row[cellData.column.property]" :key="item">\n                    <p>{{item.kc_title}}：{{item.kcname}}</p>\n                    <p>{{item.js_title}}：{{item.js}}</p>\n                    <p>{{item.bj_title}}：{{item.bjname}}</p>\n                    <p>{{item.zc_title}}：{{item.zc}}</p>\n                    <div slot="reference" style="cursor: pointer">\n                    <span>{{item.kcname}}</span>\n                    <hr style="border: 1px dashed grey" v-show="index+1 != cellData.row[cellData.column.property].length">\n                    </div>\n                </el-popover>\n            </div>',props:["cellData"]}),Vue.component("dashboard",{template:"#dashboard-template",data:function(){return{resCode:"GRZX01",dictCodeList:["jw_kcxz","jw_kclb"],form:{js:{dwname:"",xbname:"",jszc:""},xs:{dwname:"",zyname:"",bjname:""},xsname:"",zyname:"",bjname:"",userbh:"",xxxf:0,yxxf:0,zxf:0,xs_dwname:"",js_dwname:"",xbname:"",jszc:"",jczy013id:"",pkgl002id:"",userids:""},businessData:{xnxq:[],sjms:[]},kcxz:{},kclb:{},cjbz:{},type:"",xscj:[],tz:[],hdwbtz:[],jxjd:[],gljxjd:[],imageUrl:"",times:["2017-10-01T16:00:00.000Z","2017-10-07T16:00:00.000Z"],page:{conditions:{},pageIndex:1,pageSize:Number(window.Qz.settings.pagesize),orderBy:'[{ "field": "bh", "sortType": "asc"}]'},tableData:[],needToDo:[],historyMenuList:[],sfzrzhcode:"",disableSearch:!1,searchTeacher:!1,showEr:!0,leaveMessag:[],muico:["el-icon-picture personal-center-menu-blue","el-icon-date personal-center-menu-skyblue","el-icon-message personal-center-menu-orange","el-icon-upload personal-center-menu-yellow","el-icon-document personal-center-menu-gray","el-icon-menu personal-center-menu-grren","fa-book personal-center-menu-blue","el-icon-date personal-center-menu-skyblue","fa-file-text personal-center-menu-orange","el-icon-upload personal-center-menu-yellow","fa-book personal-center-menu-blue","el-icon-message personal-center-menu-orange"]}},computed:{tableProps:function(){var e=[{prop:"jcsj",align:"center",label:this.resI18n.lb_jcsj||"节次/星期",sortable:!1,minWidth:90},{prop:"xq1",isHref:!0,align:"center",label:this.resI18n.lb_xq1||"星期一",sortable:!1,minWidth:90,componentName:"course-chart"},{prop:"xq2",isHref:!0,align:"center",label:this.resI18n.lb_xq2||"星期二",sortable:!1,minWidth:90,componentName:"course-chart"},{prop:"xq3",isHref:!0,align:"center",label:this.resI18n.lb_xq3||"星期三",sortable:!1,minWidth:90,componentName:"course-chart"},{prop:"xq4",isHref:!0,align:"center",label:this.resI18n.lb_xq4||"星期四",sortable:!1,minWidth:90,componentName:"course-chart"},{prop:"xq5",isHref:!0,align:"center",label:this.resI18n.lb_xq5||"星期五",sortable:!1,minWidth:90,componentName:"course-chart"},{prop:"xq6",isHref:!0,align:"center",label:this.resI18n.lb_xq6||"星期六",sortable:!1,minWidth:90,componentName:"course-chart"}];return"0"==this.sfzrzhcode?e.splice(1,0,{prop:"xq7",isHref:!0,align:"center",label:this.resI18n.lb_xq7||"星期日",sortable:!1,minWidth:90,componentName:"course-chart"}):e.push({prop:"xq7",isHref:!0,align:"center",label:this.resI18n.lb_xq7||"星期日",sortable:!1,minWidth:90,componentName:"course-chart"}),e},jsbfb:function(){return this.form.yxxf&&this.form.zxf?Math.floor(100*this.form.yxxf/this.form.zxf):0}},watch:{"dictList.jw_kclb":function(e){var t=this;e.forEach(function(e){t.kclb[e.value]=e.label})},"dictList.jw_kcxz":function(e){var t=this;e.forEach(function(e){t.kcxz[e.value]=e.label})},"form.jczy013id":function(e){var t=this;e?biz.getBusinessDict({JwPublicPkSjms:{jczy013id:e}}).then(function(e){var s;e&&Array.isArray(e.JwPublicPkSjms)&&((s=t.businessData.sjms).splice.apply(s,[0,t.businessData.sjms.length].concat(_toConsumableArray(e.JwPublicPkSjms))),t.form.pkgl002id=e.JwPublicPkSjms.length>0?e.JwPublicPkSjms[0].id:"")}):this.businessData.sjms.splice(0,this.businessData.sjms.length),this.getKbzcInfoData()},"form.pkgl002id":function(e){var t=this;e?http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findPksjInfoByOne",{id:this.form.pkgl002id}).then(function(e){if(Array.isArray(e)&&0!=e.length)if("1"==t.type?t.disableSearch="0"==e[0].sfjscxdycode:t.disableSearch="0"==e[0].sfxscxdycode,Array.isArray(e[0].pkgl00201list)){var s,n=[];e[0].pkgl00201list.forEach(function(e){n.push({pkgl00201id:e.id,idjjssj:e.idjjssj,idjkssj:e.idjkssj,jcsj:e.djname1,xq1:[],xq2:[],xq3:[],xq4:[],xq5:[],xq6:[],xq7:[]})}),(s=t.tableData).splice.apply(s,[0,t.tableData.length].concat(n))}else t.disableSearch=!0,t.tableData.splice(0,t.tableData.length)}):(this.tableData.splice(0,this.tableData.length),this.disableSearch=!0)},$route:function(e,t){"/"!==t.path&&(this.tableData.forEach(function(e){e.xq1.splice(0,e.xq1.length),e.xq2.splice(0,e.xq2.length),e.xq3.splice(0,e.xq3.length),e.xq4.splice(0,e.xq4.length),e.xq5.splice(0,e.xq5.length),e.xq6.splice(0,e.xq6.length),e.xq7.splice(0,e.xq7.length)}),"/teacher"===e.path?this.getUserTeacher():"/student"===e.path&&this.postCj())},"$appStore.state.workflowTag":function(e){var t=this;if(this.$appStore.state.workflowInfo.formkey){var s=this.$appStore.state.workflowInfo.formkey.split("?")[1].split("&")[0].split("=")[1];if("classroom_brrowing"!==s)return}var n={conditions:{},custom:{},pageIndex:1,pageSize:Number(window.Qz.settings.pagesize),orderBy:""};n.custom.id=this.$appStore.state.workflowInfo.id,n.custom.jczy013id=this.$appStore.state.workflowInfo.jczy013id,findByIdshztmList(n).then(function(e){e.items[0]&&"1"===e.items[0].iswfmes&&t.$nextTick(function(){$confirm(t.resI18n.lb_checkdy||"确认打印?",t.resI18n.lb_reminder||"提示",{confirmButtonText:t.resI18n.lb_sure||"确定",cancelButtonText:t.resI18n.lb_cancel||"取消",closeOnClickModal:!1,closeOnPressEscape:!1,type:"warning"}).then(function(){updateJsjyInfo({id:t.$appStore.state.workflowInfo.id,jczy013id:t.$appStore.state.workflowInfo.jczy013id,dyztcode:"1"});var e=[{dataCondtion1:{jczy013id:t.$appStore.state.workflowInfo.jczy013id,pkgl006id:t.$appStore.state.workflowInfo.id},dataCondtion2:{jczy013id:t.$appStore.state.workflowInfo.jczy013id,pkgl006id:t.$appStore.state.workflowInfo.id}}];e=JSON.stringify(e),t.printHandler("jssydjb",t.resCode,[],e)})["catch"](function(){$message({type:"info",message:t.resI18n.lb_delete_off||"已取消打印"})})})})}},methods:{getKbzcInfoData:function(){var e=this;http.postJSON("com.qzdatasoft.jw.jczy.educationinfo.controller.WeekCalendarInfoController.findWeekCalendarList",{xnxq:this.form.jczy013id}).then(function(t){e.sfzrzhcode=t.sfzrzhcode})},search:function(){var e=this;this.validateForm().then(function(){"1"==e.type?e.getTeacherData():e.getStudentData()})["catch"](function(e){})},getUserTeacher:function(){var e=this;this.searchTeacher||(query.queryJSON("com.qzdatasoft.jwPublic.controller.JwPublicController.findPublicDicByTea",{custom:{iscontrol:-1},conditions:{id:{op:"equal",value:this.form.userids}},pageIndex:0,pageSize:0},{},{loading:!1}).then(function(t){t&&Array.isArray(t.items)&&t.items.length&&(e.form.js.jszc=t.items[0].jszw_name,e.form.js.dwname=t.items[0].jczy003_name,e.form.js.xbname=t.items[0].sex_name)}),this.searchTeacher=!0),this.postjskc(),this.needThing()},getUserStudent:function(){this.postCj(),this.postLy()},postLy:function(){var e=this;http.postJSON("ZYGL08_jw.xsd.xsdInfo.controller.XsdMsgInfoController.findMsgList",{}).then(function(t){e.leaveMessag=t.sort(function(e,t){return e.lysj<t.lysj})})},getStudentData:function(){var e=this;http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findKbStudent",{jczy013id:this.form.jczy013id,pkgl002id:this.form.pkgl002id}).then(function(t){Array.isArray(t)&&(e.tableData.forEach(function(e){e.xq1.splice(0,e.xq1.length),e.xq2.splice(0,e.xq2.length),e.xq3.splice(0,e.xq3.length),e.xq4.splice(0,e.xq4.length),e.xq5.splice(0,e.xq5.length),e.xq6.splice(0,e.xq6.length),e.xq7.splice(0,e.xq7.length)}),t.forEach(function(t){"8"==t.pkztcode?e.tableData.forEach(function(e){(e.idjkssj<=t.idjkssj&&t.idjkssj<e.idjjssj||e.idjkssj<t.idjjssj&&t.idjjssj<=e.idjjssj)&&e["xq"+t.pksj.substr(0,1)].push({ksjms:"M"})}):e.tableData.forEach(function(s){(s.idjkssj<=t.idjkssj&&t.idjkssj<s.idjjssj||s.idjkssj<t.idjjssj&&t.idjjssj<=s.idjjssj)&&s["xq"+t.pksj.substr(0,1)].push({kcname:t.kc_name,bjname:t.ktmc_name,zc:t.pkzc+(e.resI18n.lb_z||"周")+"("+("1"===t.sjbzcode?e.resI18n.lb_dsz||"单双周":"2"===t.sjbzcode?e.resI18n.lb_dz||"单周":e.resI18n.lb_sz||"双周")+")["+t.pksj.substr(1,t.pksj.length-1)+(e.resI18n.lb_j||"节")+"]",js:t.js_name,kc_title:e.resI18n.lb_kec||"课程",bj_title:e.resI18n.lb_bj||"班级",js_title:e.resI18n.lb_jiaos||"教室",zc_title:e.resI18n.lb_zc||"周次"})})}))})},getTeacherData:function(){var e=this;http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findKbTeacher",{jczy013id:this.form.jczy013id,pkgl002id:this.form.pkgl002id}).then(function(t){Array.isArray(t)&&(e.tableData.forEach(function(e){e.xq1.splice(0,e.xq1.length),e.xq2.splice(0,e.xq2.length),e.xq3.splice(0,e.xq3.length),e.xq4.splice(0,e.xq4.length),e.xq5.splice(0,e.xq5.length),e.xq6.splice(0,e.xq6.length),e.xq7.splice(0,e.xq7.length)}),t.forEach(function(t){"8"==t.pkztcode?e.tableData.forEach(function(e){(e.idjkssj<=t.idjkssj&&t.idjkssj<e.idjjssj||e.idjkssj<t.idjjssj&&t.idjjssj<=e.idjjssj)&&e["xq"+t.pksj.substr(0,1)].push({ksjms:"M"})}):e.tableData.forEach(function(s){(s.idjkssj<=t.idjkssj&&t.idjkssj<s.idjjssj||s.idjkssj<t.idjjssj&&t.idjjssj<=s.idjjssj)&&s["xq"+t.pksj.substr(0,1)].push({kcname:t.kc_name,bjname:t.ktmc_name,zc:t.pkzc+(e.resI18n.lb_z||"周")+"("+("1"===t.sjbzcode?e.resI18n.lb_dsz||"单双周":"2"===t.sjbzcode?e.resI18n.lb_dz||"单周":e.resI18n.lb_sz||"双周")+")["+t.pksj.substr(1,t.pksj.length-1)+(e.resI18n.lb_j||"节")+"]",js:t.js_name,kc_title:e.resI18n.lb_kec||"课程",bj_title:e.resI18n.lb_bj||"班级",js_title:e.resI18n.lb_jiaos||"教室",zc_title:e.resI18n.lb_zc||"周次"})})}))})},lscj:function(e){e.cj_flag&&e.tssj_flag&&window.open(Qz.contextPath+"/teacher/student-grade-entry/student-grade-entry-studentan.html#/?wf=cjgl_cjlr&resCode=JSMH0301&id="+e.cjgl008id+","+e.cjgl006id+","+e.jczy013id)},lshmc:function(e){var t={jczy013id:e.jczy013id,id:e.id};this.$dialog({app:"dashboard",template:"course-student.html",scripts:["course.student.js"]},t)},lspj:function(e,t){"tz"==t?window.open("http://jwc.hnu.edu.cn/tzgg/sytz.htm"):this.$dialog({app:"dashboard",template:"dashboard-dialog.html",scripts:["dashboard.dialog.js"]},{data:e,type:t,hdtz:this.hdwbtz})},postXf:function(e){var t=this;http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findCredit",{pyfa007id:e},{},{loading:!1}).then(function(e){t.form.xxxf=e.xxxf,t.form.yxxf=e.yxxf,t.form.zxf=e.zxf})},postjskc:function(){var e=this;http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findTeaTzdList",{},{},{loading:!1}).then(function(t){var s;(s=e.xscj).splice.apply(s,[0,e.xscj.length].concat(_toConsumableArray(t)))})},postCj:function(){var e=this;http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findSduExamList",{},{},{loading:!1}).then(function(t){var s;(s=e.xscj).splice.apply(s,[0,e.xscj.length].concat(_toConsumableArray(t)))})},postTz:function(){var e=this,t=new XMLHttpRequest,s="GET",n="";"0"==this.type?n="http://hdjw.hnu.edu.cn/news/gl.xml":"1"==this.type?n="http://hdjw.hnu.edu.cn/news/gl.xml":"2"==this.type&&(n="http://hdjw.hnu.edu.cn/news/xs.xml"),t.open(s,n,!0),t.send();var r=this;t.onload=function(){if(t.readyState==t.DONE&&200===t.status){if(!t.responseXML)return;var e=t.responseXML.getElementsByTagName("item");if(!e)return;r.hdwbtz.splice(0,r.hdwbtz.length);for(var s=0;s<e.length;s++)r.hdwbtz.push({title:e[s].getElementsByTagName("title")[0].textContent,time:e[s].getElementsByTagName("date")[0].textContent,url:"http://jwc.hnu.edu.cn/info/"+e[s].getElementsByTagName("treeid")[0].textContent+"/"+e[s].getElementsByTagName("id")[0].textContent+".htm"})}};var o={userAccount:Qz.loginUser.username};http.postJSON("framework.security.controller.SysUserRoleController.listRoleSelect",o,{},{loading:!1}).then(function(t){var s={};t.length&&(s.userrole=t.map(function(e){return e.rolecode}).join(",")),http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findNoticeList",s,{},{loading:!1}).then(function(t){var s;Array.isArray(t)&&(s=e.tz).splice.apply(s,[0,e.tz.length].concat(_toConsumableArray(t.sort(function(e,t){return t.zyxcode-e.zyxcode}))))})})},postJxjd:function(){var e=this;http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findSyllabusList",{},{},{loading:!1}).then(function(t){if(t){var s=[e.resI18n.lb_z1||"一",e.resI18n.lb_z2||"二",e.resI18n.lb_z3||"三",e.resI18n.lb_z4||"四",e.resI18n.lb_z5||"五",e.resI18n.lb_z6||"六",e.resI18n.lb_z7||"七",e.resI18n.lb_z8||"八",e.resI18n.lb_z9||"九",e.resI18n.lb_z10||"十",e.resI18n.lb_z11||"十一",e.resI18n.lb_z12||"十二"],n=["background-color: #64ea91","background-color: #c9c9c9","background-color: #01b994","background-color: #178fe6","background-color: #23c6c8","background-color: #f8ac59","background-color: #64ea91","background-color: #c9c9c9","background-color: #01b994","background-color: #178fe6","background-color: #23c6c8","background-color: #f8ac59"];if(Array.isArray(t.xnxq)&&t.xnxq.length>0){var r,o,i=[],a=Number(t.xnxq[0].ksrq),l=Number(t.xnxq[0].jsrq),c=Number(t.xnxq[0].ksxn),d=Number(t.xnxq[0].jsxn);if(!isNaN(a)&&!isNaN(l))if(c!=d){for(var h=a;h<=12;h++)i.push({yf:"",ys:"",ct:[],sort:h});for(var u=1;u<=l;u++)i.push({yf:"",ys:"",ct:[],sort:u})}else for(var p=a;p<=l;p++)i.push({yf:"",ys:"",ct:[],sort:p});i.forEach(function(e){e.ys=n[e.sort-1],e.yf=s[e.sort-1],Array.isArray(t.syllabusList)&&(e.ct=t.syllabusList.filter(function(t){var s=t.qsrq?new Date(t.qsrq):"";return s&&(s.getFullYear()==c||s.getFullYear()==d)&&s.getMonth()+1==e.sort}))}),(r=e.jxjd).splice.apply(r,[0,e.jxjd.length].concat(i)),(o=e.gljxjd).splice.apply(o,[0,e.jxjd.length].concat(i))}}})},leftClick:function(){this.gljxjd=this.jxjd.slice(0,8)},rightClick:function(){this.gljxjd=this.jxjd.slice(this.jxjd.length-8,this.jxjd.length)},showContent:function(e){this.$dialog({app:"dashboard",template:"notice-dialog.html",scripts:["notice.dialog.js"]},e)},showContent1:function(e){this.$dialog({app:"dashboard",template:"teaching-progress-dialog.html",scripts:["teaching-progress-dialog.js"]},e)},shuaxin:function(){var e=this;frameService.favoriteMenuList().then(function(t){var s,n=[];t.forEach(function(e){window.app.menuMap[e]&&(window.app.menuMap[e].favorite=!0,n.push(window.app.menuMap[e]))}),(s=e.historyMenuList).splice.apply(s,[0,e.historyMenuList.length].concat(n))})["catch"](function(e){})},goMenu:function(e){location.hash=e},needThing:function(){var e=this;query.queryJSON("BPM0201_framework.workflow.api.TaskApiController.taskSearch",{conditions:{},pageIndex:1,pageSize:10}).then(function(t){e.needToDo=t.items})},taskOperate:function(e){var t=e.formkey;this.$router.push({path:t,query:{key:e.defkey,businessId:e.businessid,taskId:e.id,taskKey:e.actid,taskName:e.name,param:{type:"remain",isFirst:e.firstTask,instanceid:e.instanceid},instanceName:e.currentactivityname,flowName:e.flowname}})},addMessage:function(){var e=this;this.$dialog({app:"dashboard",template:"student-input.html",scripts:["student.input.js"]},{}).then(function(){e.postLy()})},seeMessage:function(e){this.$dialog({app:"dashboard",template:"student-message.html",scripts:["student.message.js"]},{jczy044id:e})}},created:function(){var e=this;frameService.favoriteMenuList().then(function(t){t.forEach(function(t){window.app.menuMap[t]&&(window.app.menuMap[t].favorite=!0,e.historyMenuList.push(window.app.menuMap[t]))})})["catch"](function(e){}),http.postJSON("ZYGL08_jwPublic.controller.UserIndexController.findUserDetail",{sctype:"hndx",userType:Qz.loginUser.userType||""},{},{loading:!1}).then(function(t){if(t&&t.holder){if(t.holder.userInfo){t.holder.userInfo.username!==t.holder.userInfo.userbh&&(e.form.xsname=t.holder.userInfo.username,e.form.userbh=t.holder.userInfo.userbh);var s=Qz.viewUrl(t.holder.userInfo.zpdz);e.imageUrl=t.holder.userInfo.zpdz?s:"",e.form.userids=t.holder.userInfo.userids}t.xsInfo&&(e.form.xs.bjname=t.xsInfo.bj_name,e.form.xs.dwname=t.xsInfo.skdw_name,e.form.xs.zyname=t.xsInfo.ndzy_name),t.holder.userInfo&&"system"==t.holder.userInfo.usertypes?(e.type="0",e.needThing()):t.holder.userInfo&&"teacher"==t.holder.userInfo.usertypes?e.type="1":t.holder.userInfo&&"student"==t.holder.userInfo.usertypes&&(e.type="2"),"/student"===e.$route.path?e.getUserStudent():"/teacher"===e.$route.path?e.getUserTeacher():t.holder.userInfo&&"system"==t.holder.userInfo.usertypes?(e.$router.push({path:"/teacher"}),e.getUserTeacher()):t.holder.userInfo&&"teacher"==t.holder.userInfo.usertypes?(e.$router.push({path:"/teacher"}),e.getUserTeacher()):t.holder.userInfo&&"student"==t.holder.userInfo.usertypes&&(e.$router.push({path:"/student"}),e.getUserStudent()),biz.getBusinessDict({JwPublicXnxq:{}}).then(function(t){var s;if(t&&Array.isArray(t.JwPublicXnxq)){(s=e.businessData.xnxq).push.apply(s,_toConsumableArray(t.JwPublicXnxq));var n=t.JwPublicXnxq.find(function(e){return"1"==e.sfdqxqcode});n&&(e.form.jczy013id=n.id)}}),e.postTz(),e.postJxjd()}})}});})()</script><script type="text/javascript">(function () {"use strict";student.academicProgressChartxyjc={findKctxGroupInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findKctxGroupInfo")},findXyjzbInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXyjzbInfo")},findXyjzbXnxqInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXyjzbXnxqInfo")},findXyjzbXfyqInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXyjzbXfyqInfo")},findXsSfgxhInfoOne:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXsSfgxhInfoOne")},checkPjkz:function(n){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.CjglKccjckController.checkPjkz",n)}};})()</script><script type="text/javascript">(function () {"use strict";function _objectDestructuringEmpty(e){if(null==e)throw new TypeError("Cannot destructure undefined")}_objectDestructuringEmpty(student.academicProgressChartxyjc),Vue.component("student-academic-progress-chartxyjc",{template:"#student-academic-progress-chartxyjc-template",name:"academic-progress-chartxyjc",components:{first:Qz.component({app:"student",module:"academic-progress-chartxyjc",template:"academic-progress-chartxyjc-course-category.html",resCode:"XSMH080401",scripts:["academic.progress.chartxyjc.service.js","academic.progress.chartxyjc.course.category.js"]}),second:Qz.component({app:"student",module:"academic-progress-chartxyjc",template:"academic-progress-chartxyjc-semester-plan.html",resCode:"XSMH080402",scripts:["academic.progress.chartxyjc.service.js","academic.progress.chartxyjc.semester.plan.js"]})},data:function(){return{resCode:"XSMH0804",dictCodeList:[],activeName:"first",datas:{}}},methods:{dataChange:function(e){this.datas=e}},created:function(){}});})()</script><script type="text/javascript">(function () {"use strict";student.academicProgressChartxyjc={findKctxGroupInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findKctxGroupInfo")},findXyjzbInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXyjzbInfo")},findXyjzbXnxqInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXyjzbXnxqInfo")},findXyjzbXfyqInfo:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXyjzbXfyqInfo")},findXsSfgxhInfoOne:function(){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.XsdPublicController.findXsSfgxhInfoOne")},checkPjkz:function(n){return http.postJSON("XSMH0804_jw.xsd.xsdInfo.controller.CjglKccjckController.checkPjkz",n)}};})()</script><script type="text/javascript">(function () {"use strict";var _student$academicProg=student.academicProgressChartxyjc,findXyjzbInfo=_student$academicProg.findXyjzbInfo,findXyjzbXfyqInfo=_student$academicProg.findXyjzbXfyqInfo,findXsSfgxhInfoOne=_student$academicProg.findXsSfgxhInfoOne,checkPjkz=_student$academicProg.checkPjkz;Vue.component("student-academic-progress-chartxyjc-course-category",{template:"#student-academic-progress-chartxyjc-course-category-template",name:"academic-progress-chartxyjc-course-category",props:{datas:{type:Object,"default":""}},data:function(){return{resCode:"XSMH080401",dictCodeList:[],tableData:[],tableObj:{qtkcList:[],xkzkcList:[],jzsjkcList:[],zyhxkcList:[],tsbxkcList:[],xmhxkcList:[],xlhxkcList:[],tsxxkcList:[]},footData:[],test:"#ddd",zxf:0,fawxfSum:0,jhwkc_name:"",zymc:"",xftjyq:{tsbx:0,xmhx:0,xlhx:0,zyhx:0,qtxx:0,zyxxkcz:0,tsxx:0,jzsj:0},xftjxj:{tsbx:0,xmhx:0,xlhx:0,zyhx:0,qtxx:0,zyxxkcz:0,tsxx:0,jzsj:0},yxxfs:0}},computed:{byzk:function(){return this.footData.every(function(x){return x.state})}},methods:{search:function(){var x=this;checkPjkz().then(function(s){if("true"==s)x.jhwkc_name=x.resI18n.lb_fawkc||"计划外课程",findXyjzbInfo().then(function(s){var t,c=[];if(s.qtkcList.length>0){var n=0;s.qtkcList.forEach(function(s){n+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.qtkcList.push(s)}),x.xftjxj.qtxx+=n,c.push({name:(x.resI18n.lb_zyxxRx||" 专业选修(任选学分)")+(x.resI18n.lb_xj||"小计：")+n+(x.resI18n.lb_tgqk||" 通过情况：")+(n>=x.xftjyq.qtxx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:n==x.xftjyq.qtxx,tx_name:x.resI18n.lb_zyxxRx||" 专业选修(任选学分)",sftg:n>=x.xftjyq.qtxx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:n,kccode:"7"}),x.yxxfs+=n}if(s.xkzkcList.length>0){var e=0;s.xkzkcList.forEach(function(s){e+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.xkzkcList.push(s)}),x.xftjxj.zyxxkcz+=e,c.push({name:(x.resI18n.lb_zyxxKcz||" 专业选修(分组课程)")+(x.resI18n.lb_xj||"小计：")+e+(x.resI18n.lb_tgqk||" 通过情况：")+(e>=x.xftjyq.zyxxkcz?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:e==x.xftjyq.zyxxkcz,tx_name:x.resI18n.lb_zyxxKcz||" 专业选修(分组课程)",sftg:e>=x.xftjyq.zyxxkcz?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:e,kccode:"6"}),x.yxxfs+=e}if(s.jzsjkcList.length>0){var j=0;s.jzsjkcList.forEach(function(s){j+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.jzsjkcList.push(s)}),x.xftjxj.jzsj+=j,c.push({name:(x.resI18n.lb_jzsj||" 集中实践")+(x.resI18n.lb_xj||"小计：")+j+(x.resI18n.lb_tgqk||" 通过情况：")+(j>=x.xftjyq.jzsj?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:j==x.xftjyq.jzsj,tx_name:x.resI18n.lb_jzsj||" 集中实践",sftg:j>=x.xftjyq.zyxxkcz?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:j,kccode:"5"}),x.yxxfs+=j}if(s.zyhxkcList.length>0){var f=0;s.zyhxkcList.forEach(function(s){f+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.zyhxkcList.push(s)}),x.xftjxj.zyhx+=f,c.push({name:(x.resI18n.lb_zyhx||" 专业核心")+(x.resI18n.lb_xj||"小计：")+f+(x.resI18n.lb_tgqk||" 通过情况：")+(f>=x.xftjyq.zyhx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:f==x.xftjyq.zyhx,tx_name:x.resI18n.lb_zyhx||" 专业核心",sftg:f>=x.xftjyq.zyhx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:f,kccode:"4"}),x.yxxfs+=f}if(s.tsbxkcList.length>0){var l=0;s.tsbxkcList.forEach(function(s){l+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.tsbxkcList.push(s)}),x.xftjxj.tsbx+=l,c.push({name:(x.resI18n.lb_tsbx||" 通识必修")+(x.resI18n.lb_xj||"小计：")+l+(x.resI18n.lb_tgqk||" 通过情况：")+(l>=x.xftjyq.tsbx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:l==x.xftjyq.tsbx,tx_name:x.resI18n.lb_tsbx||" 通识必修",sftg:l>=x.xftjyq.tsbx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:l,kccode:"1"}),x.yxxfs+=l}if(s.xmhxkcList.length>0){var a=0;s.xmhxkcList.forEach(function(s){a+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.xmhxkcList.push(s)}),x.xftjxj.xmhx+=a,c.push({name:(x.resI18n.lb_xmhx||" 学门核心")+(x.resI18n.lb_xj||"小计：")+a+(x.resI18n.lb_tgqk||" 通过情况：")+(a>=x.xftjyq.xmhx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:a==x.xftjyq.xmhx,tx_name:x.resI18n.lb_xmhx||" 学门核心",sftg:a>=x.xftjyq.xmhx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:a,kccode:"2"}),x.yxxfs+=a}if(s.xlhxkcList.length>0){var h=0;s.xlhxkcList.forEach(function(s){h+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.xlhxkcList.push(s)}),x.xftjxj.xlhx+=h,c.push({name:(x.resI18n.lb_xlhx||" 学类核心")+(x.resI18n.lb_xj||"小计：")+h+(x.resI18n.lb_tgqk||" 通过情况：")+(h>=x.xftjyq.xlhx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:h==x.xftjyq.xlhx,tx_name:x.resI18n.lb_xlhx||" 学类核心",sftg:h>=x.xftjyq.xlhx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:h,kccode:"3"}),x.yxxfs+=h}if(s.tsxxkcList.length>0){var z=0;s.tsxxkcList.forEach(function(s){z+=null!=s.zcj&&s.zcj>=60?s.xf||0:0,x.tableObj.tsxxkcList.push(s)}),x.xftjxj.tsxx+=z,c.push({name:(x.resI18n.lb_tsxx||" 通识选修")+(x.resI18n.lb_xj||"小计：")+z+(x.resI18n.lb_tgqk||" 通过情况：")+(z>=x.xftjyq.tsxx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过"),state:z==x.xftjyq.tsxx,tx_name:x.resI18n.lb_tsxx||" 通识选修",sftg:z>=x.xftjyq.tsxx?x.resI18n.lb_pass||"通过":x.resI18n.lb_no_pass||"不通过",xfs:z,kccode:"8"}),x.yxxfs+=z}(t=x.footData).push.apply(t,c),x.$emit("dataChange",{zymc:x.zymc,xftjyq:x.xftjyq,xftjxj:x.xftjxj,yxxfs:x.yxxfs,zxf:x.zxf})});else{var t=x.$createElement;x.$msgbox({title:"查询控制提示",closeOnClickModal:!1,message:t("div",null,[t("div",{style:"fontSize: 13px;lineHeight:24px;"},s)]),showCancelButton:!1,confirmButtonText:"确定"})}})},colorBackground:function(x){return"0"==x.sflrcjcode?"2"==x.xqxh&&null==x.zcj?"#FFFFFF":"2"==x.xqxh&&x.zcj<60?"#FF99CC":"2"==x.xqxh&&x.zcj>=60?"#40E0D0":"1"==x.xqxh&&null==x.zcj?"#F0E68C":"1"==x.xqxh&&x.zcj<60?"#FF99CC":"1"==x.xqxh&&x.zcj>=60?"#40E0D0":"0"==x.xqxh&&null==x.zcj?"#F0E68C":"0"==x.xqxh&&x.zcj<60?"#FF99CC":"0"==x.xqxh&&x.zcj>=60?"#40E0D0":"#FFFFFF":"2"==x.xqxh&&null==x.zcj?"#FFFFFF":"2"==x.xqxh&&x.zcj<60?"#FF99CC":"2"==x.xqxh&&x.zcj>=60?"#40E0D0":"1"==x.xqxh&&null==x.zcj?"#FFFFFF":"1"==x.xqxh&&x.zcj<60?"#FF99CC":"1"==x.xqxh&&x.zcj>=60?"#40E0D0":"0"==x.xqxh&&null==x.zcj?"#F0E68C":"0"==x.xqxh&&x.zcj<60?"#FF99CC":"0"==x.xqxh&&x.zcj>=60?"#40E0D0":"#FFFFFF"},hgzt:function(x){return"0"==x.sflrcjcode?"2"==x.xqxh&&null==x.zcj?"未修":"2"==x.xqxh&&x.zcj<60?"未通过":"2"==x.xqxh&&x.zcj>=60?"√":"1"==x.xqxh&&null==x.zcj?"在修中":"1"==x.xqxh&&x.zcj<60?"未通过":"1"==x.xqxh&&x.zcj>=60?"√":"0"==x.xqxh&&null==x.zcj?"在修中":"0"==x.xqxh&&x.zcj<60?"未通过":"0"==x.xqxh&&x.zcj>=60?"√":"未修":"2"==x.xqxh&&null==x.zcj?"未修":"2"==x.xqxh&&x.zcj<60?"未通过":"2"==x.xqxh&&x.zcj>=60?"√":"1"==x.xqxh&&null==x.zcj?"未修":"1"==x.xqxh&&x.zcj<60?"未通过":"1"==x.xqxh&&x.zcj>=60?"√":"0"==x.xqxh&&null==x.zcj?"在修中":"0"==x.xqxh&&x.zcj<60?"未通过":"0"==x.xqxh&&x.zcj>=60?"√":"未修"},colorHgzt:function(x){return"0"==x.sflrcjcode?"2"==x.xqxh&&null==x.zcj?"#FF00FF":"2"==x.xqxh&&x.zcj<60?"#FF6600":"2"==x.xqxh&&x.zcj>=60?"#0000FF":"1"==x.xqxh&&null==x.zcj?"#0000FF":"1"==x.xqxh&&x.zcj<60?"#FF6600":"1"==x.xqxh&&x.zcj>=60?"#333333":"0"==x.xqxh&&null==x.zcj?"#0000FF":"0"==x.xqxh&&x.zcj<60?"#FF6600":"0"==x.xqxh&&x.zcj>=60?"#333333":"#FF00FF":"2"==x.xqxh&&null==x.zcj?"#FF00FF":"2"==x.xqxh&&x.zcj<60?"#FF6600":"2"==x.xqxh&&x.zcj>=60?"#333333":"1"==x.xqxh&&null==x.zcj?"#FF00FF":"1"==x.xqxh&&x.zcj<60?"#FF6600":"1"==x.xqxh&&x.zcj>=60?"#FF6600":"0"==x.xqxh&&null==x.zcj?"#0000FF":"0"==x.xqxh&&x.zcj<60?"#FF6600":"0"==x.xqxh&&x.zcj>=60?"#333333":"#FF00FF"},getBusinessDict:function(){var x=this;findXyjzbXfyqInfo().then(function(s){s.length>0&&(x.zxf=s[0].zxf,x.xftjyq.zyxxkcz=s[0].zyxxkczxf,x.xftjyq.qtxx=s[0].qtxxxf,x.xftjyq.tsxx=s[0].tsxxxf,s.forEach(function(s){switch(s.lbxid){case"58":x.xftjyq.tsbx=s.xf;break;case"15":x.xftjyq.xmhx=s.xf;break;case"41":x.xftjyq.xlhx=s.xf;break;case"13":x.xftjyq.zyhx=s.xf;break;case"8":x.xftjyq.jzsj=s.xf;break;case"14":x.xftjyq.qtxx+=s.xf}}))})}},created:function(){var x=this;findXsSfgxhInfoOne().then(function(s){s&&("1"==s.sfgxh?x.zymc=s.name1+"(个性化)":x.zymc=s.name1)}),this.getBusinessDict(),this.search()}});})()</script></head><body style="overflow: hidden; position: static;"><div id="app" class="qz-workspace"><span><div class="el-popover" style="width: 360px; display: none;"><!----><div class="menu-title">最近使用</div><div class="el-row"><div class="menu-box el-col el-col-6"><div class="menu-icon-box"><i class=" "></i></div><span>课表查看</span></div><div class="menu-box el-col el-col-6"><div class="menu-icon-box"><i class=" "></i></div><span>成绩查看</span></div><div class="menu-box el-col el-col-6"><div class="menu-icon-box"><i class=" "></i></div><span>考试安排</span></div><div class="menu-box el-col el-col-6"><div class="menu-icon-box"><i class=" "></i></div><span>选课中心</span></div><div class="menu-box el-col el-col-6"><div class="menu-icon-box"><i class="el-icon-menu"></i></div><span>预约考试</span></div><div class="menu-box el-col el-col-6"><div class="menu-icon-box"><i class="el-icon-menu"></i></div><span>转专业申请</span></div><div class="menu-box el-col el-col-6"><div class="menu-icon-box"><i class="el-icon-menu"></i></div><span>专业分流申请</span></div></div><div class="menu-title">常用功能</div><div class="el-row"><div class="menu-box el-col el-col-6" index="/student/course-score-see/"><div class="menu-icon-box"><i class=" "></i></div><span>成绩查看</span></div></div></div></span><span><div class="el-popover role-change" style="width: 200px; display: none;"><!----><ul class="el-menu"><li class="el-menu-item is-active" code="student" code2="student" style="padding-left: 20px;">学生</li><!----></ul></div></span><span><div class="el-popover" style="width: 760px; display: none;"><!----><ul class="first-menu"><li><span><i class="fa-users" style="color: rgb(23, 143, 230);"></i> 学生门户</span></li></ul></div></span><div class="frame-header el-row"><div class="el-col el-col-10"><ul class="header-operations left"><li class="no-border"><img src="./学业进展表 - 湖南大学_files/head_bg.png" class="logo"></li></ul></div><div class="el-col el-col-14"><ul class="header-operations right"><li><i class="fa-list"></i>主菜单</li><li><i class="fa-enlarge"></i>全屏模式</li><li><div class="el-badge"><i class="fa-bell"></i>消息<sup class="el-badge__content is-fixed" style="display: none;">0</sup></div></li><li><i class="fa-users"></i>切换角色</li><li><i class="fa-user"></i>董树材</li><li><i class="fa-cog"></i>设置</li><li class="no-border"><i class="fa-switch"></i>退出</li></ul></div></div><div class="frame-container"><div class=""><div class="sidebar-container"><div class="el-scrollbar"><div class="el-scrollbar__wrap" style="margin-bottom: -17px; margin-right: -17px; height: 678px; background-color: rgb(255, 255, 255);"><div class="el-scrollbar__view" style="position: relative;"><div class="menu-zindex no-width"><ul class="el-menu" style="height: 661.6px;"><li class="el-submenu is-opened"><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-users"></i> <span>学生门户</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="" data-old-padding-top="" data-old-padding-bottom="" data-old-overflow=""></ul></li></ul><div class="first-class-box"><img src="./学业进展表 - 湖南大学_files/siderbar-btn.png"> <!----></div></div><div class="menu-child"><div class="navmenu-box"><p class="navmenu-title"><i class="fa-users"></i><span>学生门户</span></p></div><ul class="el-menu"><div class="menu-wrapper"><li class="el-menu-item" data-url="/student" style="padding-left: 20px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        个人中心
+      </span></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-calendar"></i> <span>我的选课</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/student-course-list/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        课表查看
+      </span></li><li class="el-menu-item" data-url="/student/student-tea-arr-inquire/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学期开课任务
+      </span></li><li class="el-menu-item" data-url="/student/student-choice-center/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        选课中心
+      </span></li><li class="el-menu-item" data-url="/student/student-course-application/?wf=xkgl_tksq&amp;resCode=XSMH0304" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        课堂调整申请
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-spinner5"></i> <span>预约系统</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/free-classroom-list-order/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        空闲教室查看
+      </span></li><li class="el-menu-item" data-url="/student/student-classroom-apply/?wf=classroom_brrowing&amp;resCode=XSMH0702" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        教室借用申请
+      </span></li><li class="el-menu-item" data-url="/student/student-computer/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        预约考试
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-clipboard"></i> <span>我的成绩</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/course-score-see/" style="padding-left: 40px;"> <!----> <i class="icon-favorite el-icon-star-on"></i> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        成绩查看
+      </span></li><li class="el-menu-item" data-url="/student/score-check-apply/?wf=score_check&amp;resCode=XSMH0502" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        成绩复查申请
+      </span></li><li class="el-menu-item" data-url="/student_hndx/grade-affirm-apply/?wf=@&amp;resCode=XSMH0504" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        认定申请
+      </span></li><li class="el-menu-item" data-url="/student_hndx/student-score-ranking-see/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        成绩排名查看
+      </span></li><li class="el-menu-item" data-url="/student_hndx/course-project-score-see/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        项目成绩查看
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-stack"></i> <span>考试信息</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/test-arrange-search/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        考试安排
+      </span></li><li class="el-menu-item" data-url="/student/student-study-apply/?wf=@&amp;resCode=XSMH0501" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        缓考申请
+      </span></li><li class="el-menu-item" data-url="/student/makeup-enroll/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        补考报名
+      </span></li><li class="el-menu-item" data-url="/student/distinction-enrol/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        考级报名
+      </span></li><li class="el-menu-item" data-url="/student/grade-search/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        考级成绩
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-books"></i> <span>培养方案</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/student-traning-program-info/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        专业培养方案
+      </span></li><li class="el-menu-item" data-url="/student/execution-plan-check/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        专业指导计划
+      </span></li><li class="el-menu-item" data-url="/student/academic-progress-chart/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学业进展表
+      </span></li></div></ul></li><li class="el-submenu is-active is-opened" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-graduates"></i> <span>学业进程</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="" data-old-padding-top="" data-old-padding-bottom="" data-old-overflow=""> <div class="menu-wrapper nest-menu"><li class="el-menu-item is-active" data-url="/student/academic-progress-chartxyjc/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学业进展表
+      </span></li><li class="el-menu-item" data-url="/student_hndx/early-warning-information/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学业预警信息
+      </span></li><li class="el-menu-item" data-url="/student/advance-graduate-apply/?wf=bygl_tqsq&amp;resCode=XSMH0801" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        提前毕业申请
+      </span></li><li class="el-menu-item" data-url="/student/graduate-results-seach/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        毕业审核结果查询
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-profile"></i> <span>学籍信息</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/student-card/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学生学籍卡片
+      </span></li><li class="el-menu-item" data-url="/student/personal-information-check/?wf=xjxxsh&amp;resCode=XSMH0406" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        个人信息核对
+      </span></li><li class="el-menu-item" data-url="/student/student-condition-search/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学籍状态查询
+      </span></li><li class="el-menu-item" data-url="/student/informartion-chang/?wf=@&amp;resCode=XJGL0604" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学籍异动申请
+      </span></li><li class="el-menu-item" data-url="/student_hndx/change-major-apply/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        转专业申请
+      </span></li><li class="el-menu-item" data-url="/student_hndx/major-flow-apply/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        专业分流申请
+      </span></li><li class="el-menu-item" data-url="/student/idcard-info-replace/?wf=xjgl_xszbbsq&amp;resCode=XSMH0409" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        学生证补办申请
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-spinner5"></i> <span>毕业设计管理</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/bysj-new/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        毕业设计管理
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-spinner5"></i> <span>研究生推免</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/graduate-application/?wf=xjgl_yjstm&amp;resCode=XSMH1001" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        推免申请
+      </span></li><li class="el-menu-item" data-url="/student/graduate-result/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        推免结果
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-spinner5"></i> <span>辅修管理</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/student-traning-program-minor/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        辅修专业方案
+      </span></li><li class="el-menu-item" data-url="/student/minor-enrollment/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        辅修报名
+      </span></li><li class="el-menu-item" data-url="/student/minor-enrollment-condition/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        辅修学业进展
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-spinner5"></i> <span>交流交换</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/exchange-student-registration/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        交流交换申请
+      </span></li><li class="el-menu-item" data-url="/jlsgl/expatriate-apply-manage/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        外派出境申请
+      </span></li><li class="el-menu-item" data-url="/student/exchange-project-apply/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        项目变更申请
+      </span></li><li class="el-menu-item" data-url="/student/return-school-apply-student" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        返校申请
+      </span></li><li class="el-menu-item" data-url="/student/upload-material" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        材料上传
+      </span></li></div></ul></li><li class="el-submenu" style=""><div class="el-submenu__title" style="padding-left: 20px;"><i class="fa-spinner5"></i> <span>公共信息</span><i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><ul class="el-menu" style="display: none;"> <div class="menu-wrapper nest-menu"><li class="el-menu-item" data-url="/student/student-week-calendar/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        教学周历
+      </span></li><li class="el-menu-item" data-url="/student/free-classroom-list/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        空闲教室查看
+      </span></li><li class="el-menu-item" data-url="/student/student-traning-program-info-all/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        全校培养方案
+      </span></li><li class="el-menu-item" data-url="/student/student-all-timetable-list/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        全校总课表
+      </span></li><li class="el-menu-item" data-url="/student/school-district-plan/" style="padding-left: 40px;"> <i class="icon-favorite el-icon-star-off"></i> <!----> <span class="el-tooltip" style="visibility: hidden; position: absolute; right: 0px; top: 15px;"></span><span>
+        校区平面图
+      </span></li></div></ul></li></div></ul></div><div class="resize-triggers"><div class="expand-trigger"><div style="width: 161px; height: 663px;"></div></div><div class="contract-trigger"></div></div></div></div><div class="el-scrollbar__bar is-horizontal"><div class="el-scrollbar__thumb" style="transform: translateX(0%);"></div></div><div class="el-scrollbar__bar is-vertical"><div class="el-scrollbar__thumb" style="height: 99.8489%; transform: translateY(0%);"></div></div></div></div></div><div class="content-tabs"><div class="menu-tabs"><div class="caret caret-left" style="float: left; width: 39px;"><li class="caret-icon caret-left-on"></li></div><div class="caret" style="float: right; width: 135px;"><div class="caret-right"><li class="caret-icon caret-right-off"></li></div><div class="caret-close"><div class="el-dropdown"><button type="button" class="el-button el-button--text"><!----><!----><span>关闭操作 <i class="el-icon-caret-bottom el-icon-right"></i></span></button><ul class="el-dropdown-menu" style="display: none;"><li class="el-dropdown-menu__item">关闭标签页</li><li class="el-dropdown-menu__item">关闭其他标签页</li><li class="el-dropdown-menu__item">关闭右侧标签页</li><li class="el-dropdown-menu__item">关闭所有标签页</li></ul></div></div></div><div class="tabs-cnt"><div class="el-tabs el-tabs--card"><div class="el-tabs__header"><div class="el-tabs__nav-wrap"><div class="el-tabs__nav-scroll"><div class="el-tabs__nav"><div class="el-tabs__item">个人中心</div><div class="el-tabs__item is-active is-closable">学业进展表<span class="el-icon-close"></span></div></div></div><div class="resize-triggers"><div class="expand-trigger"><div style="width: 657px; height: 36px;"></div></div><div class="contract-trigger"></div></div></div></div><div class="el-tabs__content"><div class="el-tab-pane" style="display: none;"></div><div class="el-tab-pane"></div></div></div></div></div><div class="el-scrollbar"><div class="el-scrollbar__wrap" style="margin-bottom: -17px; margin-right: -17px; height: 637px; background-color: rgb(255, 255, 255);"><div class="el-scrollbar__view" style="position: relative;"><div class="view-content"><div class="el-tabs"><div class="el-tabs__header"><div class="el-tabs__nav-wrap"><div class="el-tabs__nav-scroll"><div class="el-tabs__nav"><div class="el-tabs__active-bar" style="width: 123px; transform: translateX(0px);"></div><div class="el-tabs__item is-active">按课程类别查询</div><div class="el-tabs__item">按学期计划查询</div></div></div><div class="resize-triggers"><div class="expand-trigger"><div style="width: 820px; height: 36px;"></div></div><div class="contract-trigger"></div></div></div></div><div class="el-tabs__content"><div class="el-tab-pane"></div> <div class="el-tab-pane" style="display: none;"></div></div></div> <div class="el-row" style="margin-top: 10px;"><div><span style="font-size: 13px;">日语专业学生毕业最低学分数为0学分，其中各类别课程及环节要求的学分数如下表： </span> <table cellspacing="0" cellpadding="0" border="0" class="el-table el-table--border"><thead class="el-table__header-wrapper"><th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程类别</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">通识必修</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学门核心</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学类核心</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">专业核心</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">集中实践</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">专业选修(分组课程)</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">专业选修(任选学分)</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">通识选修</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">合计</div></th></thead> <tbody class="el-table__body"><tr><td class="is-center"><div class="cell">方案学分数</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td></tr> <tr><td class="is-center"><div class="cell">已修学分数</div></td> <td class="is-center"><div class="cell">27.5</div></td> <td class="is-center"><div class="cell">26</div></td> <td class="is-center"><div class="cell">
+	35</div></td> <td class="is-center"><div class="cell">17</div></td> <td class="is-center"><div class="cell">
+	12</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">133.5</div></td></tr> <tr><td class="is-center"><div class="cell">未完成学分数</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td> <td class="is-center"><div class="cell">/</div></td></tr></tbody></table> <span style="font-size: 15px; font-weight: bold; color: red;">注：</span> <span style="font-size: 15px; font-weight: bold; color: rgb(255, 153, 51);">学业进展表不作为毕业审核要求，仅供学生修课选课参考。</span> <table cellspacing="0" cellpadding="0" border="0" class="el-table el-table--border"><caption style="margin-top: 10px; margin-bottom: 10px;"><span style="font-size: 20px; font-weight: bold;">我的学业进展表</span> <span>(按课程类别排序）</span></caption> <tbody class="el-table__body"><tr><td colspan="11"><span style="font-weight: bold;">课程类别：通识必修</span> <span style="font-weight: bold; margin-left: 20px;">学分要求：</span> 0
+                    <!----><!----><!----><span><span style="margin-left: 30px; font-weight: bold;">小计：</span>25.5
+                            <span style="margin-left: 30px; font-weight: bold;">通过情况：</span>通过
+                    </span><!----><!----></td></tr> <tr><th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">序号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程编号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程名称</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学分数</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">修读学期</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">考试性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">总成绩</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">状态</div></th></tr> <tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">1</div></td> <td><div class="cell">GE01172</div></td> <td class="is-center"><div class="cell">习近平新时代中国特色社会主义思想概论</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-1</div></td> <td class="is-center"><div class="cell">重修一</div></td> <td class="is-center"><div class="cell">90▲</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">2</div></td> <td><div class="cell">GE01112</div></td> <td class="is-center"><div class="cell">心理素质与生涯发展(6)</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">77</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);">
+	<td class="style1"><div class="cell">3</div></td> <td class="style1"><div class="cell">GE01111</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">心理素质与生涯发展(5)</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">0</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">重修一</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		78▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">4</div></td> <td><div class="cell">GE01110</div></td> <td class="is-center"><div class="cell">心理素质与生涯发展(4)</div></td> <td class="is-center"><div class="cell">0</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">
+	在修中</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);">
+		<td class="style1"><div class="cell">5</div></td> <td class="style1"><div class="cell">GE01109</div></td> 
+		<td class="is-center" style="background-color: #40E0D0"><div class="cell">心理素质与生涯发展(3)</div></td> 
+		<td class="is-center" style="background-color: #40E0D0"><div class="cell">0</div></td> 
+		<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+		<td class="is-center" style="background-color: #40E0D0"><div class="cell">2020-2021-1</div></td> 
+		<td class="is-center" style="background-color: #40E0D0"><div class="cell">重修一</div></td> 
+		<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+			86▲</div></td> 
+		<td class="is-center" style="background-color: #40E0D0"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">6</div></td> <td><div class="cell">GE01108</div></td> <td class="is-center"><div class="cell">心理素质与生涯发展(2)</div></td> <td class="is-center"><div class="cell">0</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);">
+	<td class="style1"><div class="cell">7</div></td> <td class="style1"><div class="cell">GE01107</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">心理素质与生涯发展(1)</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">0</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2019-2020-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">重修一</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		82▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">8</div></td> <td><div class="cell">GE01105</div></td> <td class="is-center"><div class="cell">计算机导论D</div></td> <td class="is-center"><div class="cell">2.5</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">80</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);">
+	<td class="style1"><div class="cell">9</div></td> <td class="style1"><div class="cell">GE01104</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">马克思主义基本原理（2）</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">重修一</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		82▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">10</div></td> <td><div class="cell">GE01103</div></td> <td class="is-center"><div class="cell">马克思主义基本原理（1）</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">67</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">11</div></td> <td><div class="cell">GE01102</div></td> <td class="is-center"><div class="cell">中国近现代史纲要</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">66</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">12</div></td> <td><div class="cell">GE01101</div></td> <td class="is-center"><div class="cell">毛泽东思想和中国特色社会主义理论体系</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">84</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">13</div></td> <td><div class="cell">GE01100</div></td> <td class="is-center"><div class="cell">形势与政策(4)</div></td> <td class="is-center"><div class="cell">0.5</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">88</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">14</div></td> <td><div class="cell">GE01092</div></td> <td class="is-center"><div class="cell">体育（4）</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">73</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">15</div></td> <td><div class="cell">GE01091</div></td> <td class="is-center"><div class="cell">体育（3）</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">69</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">16</div></td> <td><div class="cell">GE01090</div></td> <td class="is-center"><div class="cell">体育（2）</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">90</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">17</div></td> <td><div class="cell">GE01089</div></td> <td class="is-center"><div class="cell">体育（1）</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">82</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">18</div></td> <td><div class="cell">GE01088</div></td> <td class="is-center"><div class="cell">计算机基本能力测试</div></td> <td class="is-center"><div class="cell">0.5</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);">
+	<td class="style1"><div class="cell">19</div></td> <td class="style1"><div class="cell">GE01077</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">形势与政策(3)</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">0</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2020-2021-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		重修一</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		75▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">20</div></td> <td><div class="cell">GE01076</div></td> <td class="is-center"><div class="cell">形势与政策(2)</div></td> <td class="is-center"><div class="cell">0</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">21</div></td> <td><div class="cell">GE01050</div></td> <td class="is-center"><div class="cell">形势与政策(1)</div></td> <td class="is-center"><div class="cell">0</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">92</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">22</div></td> <td><div class="cell">GE01039</div></td> <td class="is-center"><div class="cell">思想道德修养与法律基础</div></td> <td class="is-center"><div class="cell">1.5</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">76</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">23</div></td> <td><div class="cell">GE01015</div></td> <td class="is-center"><div class="cell">大学英语（4）</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">60</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">24</div></td> <td><div class="cell">GE01014</div></td> <td class="is-center"><div class="cell">大学英语（3）</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">63</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">25</div></td> <td><div class="cell">GE01013</div></td> <td class="is-center"><div class="cell">大学英语（2）</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">66</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">26</div></td> <td><div class="cell">GE01012</div></td> <td class="is-center"><div class="cell">大学英语（1）</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">80</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr> <tr><td colspan="11"><span style="font-weight: bold;">课程类别：学门核心</span> <span style="font-weight: bold; margin-left: 20px;">学分要求：</span> 0
+                    <!----><!----><!----><!----><span><span style="margin-left: 30px; font-weight: bold;">小计：</span>26
+                            <span style="margin-left: 30px; font-weight: bold;">通过情况：</span>通过
+                    </span><!----></td></tr> <tr><th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">序号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程编号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程名称</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学分数</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">修读学期</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">考试性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">总成绩</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">状态</div></th></tr> <tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">1</div></td> <td><div class="cell">FL03017</div></td> <td class="is-center"><div class="cell">现代日语语法</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">71</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">2</div></td> <td><div class="cell">FL03016</div></td> <td class="is-center"><div class="cell">基础日语阅读Ⅲ</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">84</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">3</div></td> <td><div class="cell">FL03015</div></td> <td class="is-center"><div class="cell">基础日语阅读Ⅱ</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">75</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">4</div></td> <td><div class="cell">FL03014</div></td> <td class="is-center"><div class="cell">基础日语阅读Ⅰ</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">5</div></td> <td><div class="cell">FL03013</div></td> <td class="is-center"><div class="cell">日语语音</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">84</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">6</div></td> <td><div class="cell">FL03012</div></td> <td class="is-center"><div class="cell">基础日语Ⅳ</div></td> <td class="is-center"><div class="cell">4</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">87</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">7</div></td> <td><div class="cell">FL03011</div></td> <td class="is-center"><div class="cell">基础日语Ⅲ</div></td> <td class="is-center"><div class="cell">4</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">76</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">8</div></td> <td><div class="cell">FL03010</div></td> <td class="is-center"><div class="cell">基础日语Ⅱ</div></td> <td class="is-center"><div class="cell">4</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">85</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">9</div></td> <td><div class="cell">FL03009</div></td> <td class="is-center"><div class="cell">基础日语Ⅰ</div></td> <td class="is-center"><div class="cell">4</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">94</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr> <tr><td colspan="11"><span style="font-weight: bold;">课程类别：学类核心</span> <span style="font-weight: bold; margin-left: 20px;">学分要求：</span> 0
+                    <!----><!----><!----><!----><!----><span><span style="margin-left: 30px; font-weight: bold;">小计：</span>33
+                            <span style="margin-left: 30px; font-weight: bold;">通过情况：</span>通过
+                    </span></td></tr> <tr><th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">序号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程编号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程名称</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学分数</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">修读学期</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">考试性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">总成绩</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">状态</div></th></tr> <tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">1</div></td> <td><div class="cell">FL04023</div></td> <td class="is-center"><div class="cell">高级日语(2)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">63</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">2</div></td> <td><div class="cell">FL04022</div></td> <td class="is-center"><div class="cell">高级日语Ⅰ</div></td> <td class="is-center"><div class="cell">4</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">73</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);">
+	<td class="style1"><div class="cell">3</div></td> <td class="style1"><div class="cell">FL04021</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">日语时文阅读</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		重修一</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		72▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">4</div></td> <td><div class="cell">FL04020</div></td> <td class="is-center"><div class="cell">日语综合写作</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">77</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">5</div></td> <td><div class="cell">FL04019</div></td> <td class="is-center"><div class="cell">日语写作基础</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">72</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">6</div></td> <td><div class="cell">FL04018</div></td> <td class="is-center"><div class="cell">日语视听（3）</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">76</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">7</div></td> <td><div class="cell">FL04017</div></td> <td class="is-center"><div class="cell">日语视听(2)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">71</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">8</div></td> <td><div class="cell">FL04016</div></td> <td class="is-center"><div class="cell">日语视听Ⅰ</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">86</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">9</div></td> <td><div class="cell">FL04015</div></td> <td class="is-center"><div class="cell">日语口语(4)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">10</div></td> <td><div class="cell">FL04014</div></td> <td class="is-center"><div class="cell">日语口语(3)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">11</div></td> <td><div class="cell">FL04013</div></td> <td class="is-center"><div class="cell">日语口语Ⅱ</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">92</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">12</div></td> <td><div class="cell">FL04012</div></td> <td class="is-center"><div class="cell">日语口语Ⅰ</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">95</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr> <tr><td colspan="11"><span style="font-weight: bold;">课程类别：专业核心</span> <span style="font-weight: bold; margin-left: 20px;">学分要求：</span> 0
+                    <!----><!----><span><span style="margin-left: 30px; font-weight: bold;">小计：</span>11
+                            <span style="margin-left: 30px; font-weight: bold;">通过情况：</span>通过
+                    </span><!----><!----><!----></td></tr> <tr><th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">序号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程编号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程名称</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学分数</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">修读学期</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">考试性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">总成绩</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">状态</div></th></tr> <tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">1</div></td> <td><div class="cell">FL05065</div></td> <td class="is-center"><div class="cell">语言学概论(适用于日语专业)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2022-2023-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell">√</div></td></tr><tr style="background-color: rgb(255, 153, 204);"><td><div class="cell">2</div></td> <td><div class="cell">FL05064</div></td> <td class="is-center"><div class="cell">日本文学史</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">0</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(255, 102, 0);">未通过</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);">
+	<td class="style1"><div class="cell">3</div></td> <td class="style1"><div class="cell">FL05063</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">日本文学作品赏析</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		重修一</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		72▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">4</div></td> <td><div class="cell">FL05062</div></td> <td class="is-center"><div class="cell">日汉翻译</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">5</div></td> <td><div class="cell">FL05061</div></td> <td class="is-center"><div class="cell">交替传译(适用于日语专业)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">63</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">6</div></td> <td><div class="cell">FL05060</div></td> <td class="is-center"><div class="cell">跨文化交际(适用于日语专业)</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">71</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);">
+	<td class="style1"><div class="cell">7</div></td> <td class="style1"><div class="cell">FL05059</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">日本文化概论</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		重修一</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		82▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr> <tr><td colspan="11"><span style="font-weight: bold;">课程类别：集中实践</span> <span style="font-weight: bold; margin-left: 20px;">学分要求：</span> 0
+                    <!----><span><span style="margin-left: 30px; font-weight: bold;">小计：</span>11
+                            <span style="margin-left: 30px; font-weight: bold;">通过情况：</span>通过
+                    </span><!----><!----><!----><!----></td></tr> <tr><th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">序号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程编号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程名称</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学分数</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">修读学期</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">考试性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">总成绩</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">状态</div></th></tr> <tr style="background-color: rgb(255, 153, 204);">
+	<td class="style1"><div class="cell">1</div></td> <td class="style1"><div class="cell">GE09030</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">中文应用写作训练A</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2019-2020-3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">重修一</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">
+		91▲</div></td> <td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">2</div></td> <td><div class="cell">GE09027</div></td> <td class="is-center"><div class="cell">英文应用写作训练</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-3</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);"><td><div class="cell">3</div></td> <td><div class="cell">GE09024</div></td> <td class="is-center"><div class="cell">工程认识实习</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-3</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">56</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(255, 102, 0);">未通过</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">4</div></td> <td><div class="cell">GE09002</div></td> <td class="is-center"><div class="cell">仿真平台与工具应用实践</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-3</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">83</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">5</div></td> <td><div class="cell">GE01040</div></td> <td class="is-center"><div class="cell">军事理论</div></td> <td class="is-center"><div class="cell">0</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">97</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">6</div></td> <td><div class="cell">GE01040</div></td> <td class="is-center"><div class="cell">军事理论</div></td> <td class="is-center"><div class="cell">0</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-3</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">97</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">7</div></td> <td><div class="cell">FL10015</div></td> <td class="is-center"><div class="cell">导师课程</div></td> <td class="is-center"><div class="cell">1</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2022-2023-1</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">良好</div></td> <td class="is-center"><div class="cell">√</div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">8</div></td> <td><div class="cell">FL10014</div></td> <td class="is-center"><div class="cell">认识实习</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2019-2020-3</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">80</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">9</div></td> <td><div class="cell">FL10011N</div></td> <td class="is-center"><div class="cell">日语口译实践/日语笔译实践</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2020-2021-3</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">86</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(64, 224, 208);"><td><div class="cell">10</div></td> <td><div class="cell">FL10010</div></td> <td class="is-center"><div class="cell">日语口语实习</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2021-2022-3</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">87</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(51, 51, 51);">√</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);"><td><div class="cell">11</div></td> <td><div class="cell">FL10008</div></td> <td class="is-center"><div class="cell">毕业实习</div></td> <td class="is-center"><div class="cell">2</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2022-2023-2</div></td> <td class="is-center"><div class="cell">正常考试</div></td> <td class="is-center"><div class="cell">不及格</div></td> <td class="is-center"><div class="cell"><span style="color: rgb(255, 102, 0);">未通过</span></div></td></tr><tr style="background-color: rgb(255, 255, 255);"><td><div class="cell">12</div></td> <td><div class="cell">FL10005</div></td> <td class="is-center"><div class="cell">毕业论文</div></td> <td class="is-center"><div class="cell">10</div></td> <td class="is-center"><div class="cell">必修</div></td> <td class="is-center"><div class="cell">2022-2023-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(255, 0, 255);">未修</span></div></td></tr> <!----> <tr><td colspan="11"><span style="font-weight: bold;">课程类别：专业选修(任选学分)</span> <span><span style="margin-left: 30px; font-weight: bold;">小计：</span>0
+                            </span><!----><!----><!----><!----><!----></td></tr> <tr><th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">序号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程编号</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">课程名称</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">学分数</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">修读学期</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">考试性质</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">总成绩</div></th> <th class="is-center is-leaf" style="color: rgb(23, 143, 230);"><div class="cell">状态</div></th></tr> <tr style="background-color: rgb(255, 255, 255);">
+	<td class="style1"><div class="cell">1</div></td> <td class="style1"><div class="cell">FL06092</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">同声传译(适用于日语专业)</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">选修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2022-2023-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">正常考试</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">74</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr><tr style="background-color: rgb(240, 230, 140);">
+	<td class="style1"><div class="cell">2</div></td> <td class="style1"><div class="cell">FL06091</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">商务日语</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">选修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">正常考试</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">78</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">3</div></td> <td><div class="cell">FL06090</div></td> <td class="is-center"><div class="cell">流行文化与日本</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">4</div></td> <td><div class="cell">FL06089</div></td> <td class="is-center"><div class="cell">中日文化交流史</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">5</div></td> <td><div class="cell">FL06088</div></td> <td class="is-center"><div class="cell">中国概况(适用于日语专业)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);">
+	<td class="style1"><div class="cell">6</div></td> <td class="style1"><div class="cell">FL06087</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">日本概况</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">选修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">正常考试</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">86</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr><tr style="background-color: rgb(240, 230, 140);">
+	<td class="style1"><div class="cell">7</div></td> <td class="style1"><div class="cell">FL06086</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">东亚文化</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">选修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2021-2022-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">正常考试</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">79</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr><tr style="background-color: rgb(255, 255, 255);"><td><div class="cell">8</div></td> <td><div class="cell">FL06085</div></td> <td class="is-center"><div class="cell">日本文学概论</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2022-2023-1</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(255, 0, 255);">未修</span></div></td></tr><tr style="background-color: rgb(255, 255, 255);"><td><div class="cell">9</div></td> <td><div class="cell">FL06084</div></td> <td class="is-center"><div class="cell">日本诗歌(适用于日语专业)</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2022-2023-1</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(255, 0, 255);">未修</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">10</div></td> <td><div class="cell">FL06083</div></td> <td class="is-center"><div class="cell">日语配音与演讲</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2021-2022-1</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">11</div></td> <td><div class="cell">FL06082</div></td> <td class="is-center"><div class="cell">古代日语语法</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(255, 255, 255);">
+	<td class="style1"><div class="cell">12</div></td> <td class="style1"><div class="cell">FL06081</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">日语词汇学</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">3</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">选修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2022-2023-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">正常考试</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">68</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr><tr style="background-color: rgb(240, 230, 140);"><td><div class="cell">13</div></td> <td><div class="cell">FL06080</div></td> <td class="is-center"><div class="cell">日语敬语概论</div></td> <td class="is-center"><div class="cell">3</div></td> <td class="is-center"><div class="cell">选修</div></td> <td class="is-center"><div class="cell">2021-2022-2</div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"></div></td> <td class="is-center"><div class="cell"><span style="color: rgb(0, 0, 255);">在修中</span></div></td></tr><tr style="background-color: rgb(255, 153, 204);">
+	<td class="style1"><div class="cell">14</div></td> <td class="style1"><div class="cell">GE09048</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">军事理论</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">必修</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">2022-2023-1</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">正常考试</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">85</div></td> 
+	<td class="is-center" style="background-color: #40E0D0"><div class="cell">√</div></td></tr> <!----> <tr><td colspan="11"><span style="font-weight: bold;">符号说明：</span>*表示补考，▲表示重修,状态中√表示已通过。
+                </td></tr> <tr><td colspan="11"><span style="font-weight: bold;">注：</span>部分分散进行的课程，成绩只录入指定学期，若相应未录成绩学期修课状态显示"在修中"属正常情况，不影响毕业审核，具体可咨询开课单位。
+                </td></tr></tbody></table></div></div></div><div class="resize-triggers"><div class="expand-trigger"><div style="width: 832px; height: 3104px;"></div></div><div class="contract-trigger"></div></div></div></div><div class="el-scrollbar__bar is-horizontal"><div class="el-scrollbar__thumb" style="transform: translateX(0%);"></div></div><div class="el-scrollbar__bar is-vertical"><div class="el-scrollbar__thumb" style="transform: translateY(0%); height: 19.9807%;"></div></div></div></div></div><div class="often-menu"><i class="fa-link"></i><h3>常<br>用</h3></div></div><script src="./学业进展表 - 湖南大学_files/vue.min.js.下载"></script><script src="./学业进展表 - 湖南大学_files/vue-router.min.js.下载"></script><script src="./学业进展表 - 湖南大学_files/vuex.min.js.下载"></script><script src="./学业进展表 - 湖南大学_files/index.js.下载"></script><script src="./学业进展表 - 湖南大学_files/moment.min.js.下载"></script><script src="./学业进展表 - 湖南大学_files/qz.config.new.js.下载"></script><script src="./学业进展表 - 湖南大学_files/qz.common.js.下载"></script><script src="./学业进展表 - 湖南大学_files/biz.config.js.下载"></script><script src="./学业进展表 - 湖南大学_files/hndx.config.js.下载"></script><script src="./学业进展表 - 湖南大学_files/qz.frame.js.下载"></script><script type="text/x-template" id="dashboard-template"><div class="personal-center" style="overflow: auto;height:100%"><el-form :model="form" inline label-width="90px" :rules="ruleList" ref="form"><div class="new-first-erma" v-if="showEr"><div style="padding-right: 10px;line-height: 16px;text-align: center">扫描二维码 下载APP<span style="display: inline-block;width: 14px;height: 14px" class="right el-icon-close" @click="showEr=!showEr"></span></div><img src="http://static.hdjw.hnu.edu.cn/Njw2017/static/theme/images/table-ng.jpg" style="width: 100%;margin-top: 20px"></div><div v-if="type"><el-row v-if="type == '0'"><el-col :span="8" style="border-radius: 2px;padding-right: 10px"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_dbsx || '待办事项'}}</span> <span class="right fa-arrow-right2 new-first-more" @click="goMenu('/flow/remain-task/')"></span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><el-row><qz-scrollbar :height="360"><ul class="new-first-daiban-ul"><li class="new-first-daiban-li" v-for="item in needToDo" @click="taskOperate(item)"><span>{{item.currentactivityname}}</span> <span class="new-first-daiban-li-new">new</span> <span class="right new-first-daiban-li-time">{{item.createtime}}</span></li></ul></qz-scrollbar></el-row></el-col><el-col :span="8" style="border-radius: 2px"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_dbsx || '通知公告'}}</span> <span class="right fa-arrow-right2 new-first-more" @click="lspj(tz,'tz')"></span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><el-row><qz-scrollbar :height="360"><el-row style="padding: 10px"><ul class="pnew-first-daiban-ul" v-show="tz.length +hdwbtz.length >0"><li class="new-first-daiban-li" v-for="(item,index) in hdwbtz" :key="item" v-if="index < 5"><a class="main-blank-abq left personal-center-tongzhi-li-span" :href="item.url" target="_blank">{{item.title}}</a> <span class="right new-first-daiban-li-time">{{item.time}}</span></li><li class="new-first-daiban-li" v-for="(item,index) in tz" v-if="index < 10" :key="item"><span class="personal-center-tongzhi-li-span" @click="showContent(item)"><span style="color: red" v-if="item.zyxcode == '2'">{{item.title}}</span> <span v-if="item.zyxcode != '2'">{{item.title}}</span> </span><span class="new-first-daiban-li-fire fa-quill" v-if="item.zyxcode == '2'"></span> <span class="new-first-daiban-li-fire fa-quill" v-if="item.zyxcode == '2'"></span> <span class="new-first-daiban-li-fire fa-quill" v-if="item.zyxcode == '2'"></span> <span class="new-first-daiban-li-new">new</span> <span class="right new-first-daiban-li-time">{{item.fbsj}}</span></li></ul></el-row></qz-scrollbar></el-row></el-col><el-col :span="8" style="border-radius: 2px;padding-left: 10px"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_dbsx || '常用操作'}}</span> <span class="right fa-arrow-right2 new-first-more" @click="lspj(historyMenuList,'cycz')"></span> <span class="right fa-spinner11 new-first-refresh" @click="shuaxin"></span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><el-row style="background-color:#fff"><qz-scrollbar :height="360"><ul class="personal-center-menu-ul"><li class="personal-center-menu-li" v-for="(item,index) in historyMenuList" @click="goMenu(item.url)" v-if="index<12"><div class="personal-center-menu-tubiao" :class="muico[index]"></div><div>{{item.name}}</div></li></ul></qz-scrollbar></el-row></el-col><el-col :span="24" style="border-radius: 2px;padding-top: 12px"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_dbsx || '教学活动安排'}}</span><div style="width: 99%;border-bottom: 1px solid #f0eef6"></div></div><el-row style="background-color:#fff;height:400px"><el-col :span="2" style="line-height: 400px;text-align: center"><span class="new-first-time-arrow el-icon-arrow-left" @click="leftClick"></span></el-col><el-col :span="20" style="height: 100%;overflow: hidden"><el-row style="height: 100%;transform: translateX(6%)"><el-col :span="3" style="height: 100%" v-for="(item,index) in gljxjd" v-if="index<=7"><div class="new-first-time-box" v-if="index%2 == 0"><div style="height: 100%"><div class="new-first-time-topthing" v-if="item.ct.length>0"><ul class="new-first-time-ul"><li class="new-first-time-li" @click="showContent1(temp)" v-for="temp in item.ct">{{temp.hdmcname1}}</li></ul></div><div class="new-first-time-cenxian" v-if="item.ct.length>0"></div><span class="new-first-time-boqiu"><span class="new-first-time-boqius"></span></span><div class="new-first-time-date">{{item.yf + '月'}}</div></div></div><div class="new-first-time-box" v-if="index%2 == 1" :class="index == 7?'border-none':''"><div style="height: 100%;transform: translateY(100%)"><div class="new-first-time-datess">{{item.yf + '月'}}</div><span class="new-first-time-boqiuss"><span class="new-first-time-boqiusss"></span></span><div class="new-first-time-cenxianss" v-if="item.ct.length>0"></div><div class="new-first-time-topthingss" v-if="item.ct.length>0"><ul class="new-first-time-ul"><li class="new-first-time-li" v-for="temp in item.ct">{{temp.hdmcname1}}</li></ul></div></div></div></el-col></el-row></el-col><el-col :span="2" style="line-height: 400px;text-align: center"><span class="new-first-time-arrow el-icon-arrow-right" @click="rightClick"></span></el-col></el-row></el-col></el-row><el-row v-if="type != '0'"><el-col :span="17"><el-row><el-col :span="7"><div class="personal-center-information"><div class="personal-center-information-heard"><div class="personal-center-photo-big"><div class="personal-center-photo"><img v-if="imageUrl" :src="imageUrl" class="avatar personal-center-photo-data"> <img v-if="!imageUrl" src="http://static.hdjw.hnu.edu.cn/Njw2017/static/theme/images/table-ng.jpg" class="avatar personal-center-photo-data"></div></div></div><div class="personal-center-information-foot"><el-row class="personal-center-information-foot-name"><p style="color: #808080"><span class="personal-center-color" style="font-size: 16px">{{form.xsname || Qz.loginUser.name}} </span>&nbsp; &nbsp;{{form.userbh || Qz.loginUser.username}}</p></el-row><div style="font-size: 15px;margin-top: 20px"><div style="overflow: hidden;margin-bottom: 10px"><div class="left" style="text-align: right;width: 40%;color: #36bafd">{{resI18n.lb_dw || '单位：'}}</div><div class="left" style="text-align: left">{{type == '1' ? form.js.dwname: form.xs.dwname}}</div></div><div v-if="type=='2'" style="overflow: hidden;margin-bottom: 10px"><div class="left" style="text-align: right;width: 40%;color: #36bafd">{{resI18n.lb_zy || '专业：'}}</div><div class="left" style="text-align: left">{{form.xs.zyname}}</div></div><div v-if="type=='2'" style="overflow: hidden;margin-bottom: 10px"><div class="left" style="text-align: right;width: 40%;color: #36bafd">{{resI18n.lb_bj || '班级：'}}</div><div class="left" style="text-align: left">{{form.xs.bjname}}</div></div><div v-if="type!='2'" style="overflow: hidden;margin-bottom: 10px"><div class="left" style="text-align: right;width: 40%;color: #36bafd">{{resI18n.lb_xb || '性别：'}}</div><div class="left" style="text-align: left">{{form.js.xbname}}</div></div><div v-if="type!='2'" style="overflow: hidden;margin-bottom: 10px"><div class="left" style="text-align: right;width: 40%;color: #36bafd">{{resI18n.lb_zw || '职位：'}}</div><div class="left" style="text-align: left">{{form.js.jszc}}</div></div></div></div></div></el-col><el-col :span="17" style="padding: 0px 10px"><div class="personal-center-kebiao"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_wdkb || '我的课表'}}</span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><el-row class="personal-center-kebiao-content"><el-form-item :label="resI18n.col_jczy013id || '学年学期'" prop="jczy013id" :style="{'marginBottom': '0px'}"><qz-dict-select v-model="form.jczy013id" :options="businessData.xnxq" label-key="name" value-key="id" :clearable="false"></qz-dict-select></el-form-item><el-form-item :label="resI18n.col_pkgl002id || '时间模式'" prop="pkgl002id" :style="{'marginBottom': '0px'}"><qz-dict-select v-model="form.pkgl002id" :options="businessData.sjms" :clearable="false" label-key="name" value-key="id"></qz-dict-select></el-form-item><el-form-item :style="{'marginBottom': '0px'}"><el-button type="primary" @click="search" :disabled="disableSearch">{{resI18n.lb_cx || '查询'}}</el-button></el-form-item></el-row><el-row style="padding: 0 10px"><qz-table :res-codes="resCode" :table-data="tableData" :table-props="tableProps" :is-show-checkbox="false" :is-show-index="false" :table-height="280"></qz-table></el-row></div></el-col></el-row><el-row style="margin-top: 10px"><el-col :span="12" class="personal-center-kecheng"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span v-if="type=='2'">{{resI18n.lb_zxwd || '在线问答'}}&nbsp;&nbsp;&nbsp; <span class="el-icon-plus" @click="addMessage" style="cursor: pointer"></span></span> <span v-if="type!='2'">{{resI18n.lb_wdkc || '我的课程'}}</span> <span class="right fa-arrow-right2 new-first-more" v-if="type=='2'" @click="lspj(leaveMessag,'ly')"></span> <span class="right fa-arrow-right2 new-first-more" v-if="type!='2'" @click="lspj(xscj,'kc')"></span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><el-row><div v-if="false" style="text-align: center;padding-top: 80px"><img src="http://static.hdjw.hnu.edu.cn/Njw2017/static/theme/images/table-ng.jpg"></div><qz-scrollbar :height="360"><ul class="handle-kebiao-classroom-ul" v-if="type=='2'"><li style="padding: 8px 16px 8px 8px;cursor: pointer" v-for="(item,index) in leaveMessag" v-if="index < 4" @click="seeMessage(item.id)"><div class="personal-center-kecheng-content"><span class="personal-center-kecheng-name">{{item.title_name}}</span> <span class="right"><span class="personal-center-kecheng-bianhao">{{item.lysj}}</span><br><br><span style="color: red" v-if="item.sfyhfcode == '1'">已回复</span></span><div class="personal-center-kecheng-bianhao" style="line-height: 26px">{{item.lry_name}} | {{item.bj_name}}</div></div></li></ul><ul class="handle-kebiao-classroom-ul" v-if="type!='2'"><li style="padding: 8px 16px 8px 8px" v-for="(item,index) in xscj" v-if="index < 4" :key="item"><div class="personal-center-kecheng-content"><span class="right new-first-button"><el-button @click="lshmc(item)">花名册</el-button><el-button @click="lscj(item)">录入成绩</el-button></span><span class="personal-center-kecheng-name">{{item.kcmc_name}}</span> <span class="personal-center-kecheng-bianhao">({{item.kcbh}})</span><br><span class="personal-center-kecheng-bianhao" style="line-height: 26px">课堂名称 ：{{item.ktmc_name}}</span></div></li></ul></qz-scrollbar></el-row></el-col><el-col :span="12" style="padding: 0 10px"><div class="personal-center-tongzhi"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_dbsx || '通知公告'}}</span> <span class="right fa-arrow-right2 new-first-more" @click="lspj(tz,'tz')"></span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><qz-scrollbar :height="360"><el-row style="padding: 10px"><ul class="new-first-daiban-ul" v-show="(tz.length + hdwbtz.length) > 0"><li class="new-first-daiban-li" v-for="(item,index) in hdwbtz" :key="item" v-if="index < 5"><a class="main-blank-abq left personal-center-tongzhi-li-span" :href="item.url" target="_blank">{{item.title}}</a> <span class="right new-first-daiban-li-time">{{item.time}}</span></li><li class="new-first-daiban-li" v-for="(item,index) in tz" :key="item" v-if="index < 5"><span class="personal-center-tongzhi-li-span" @click="showContent(item)"><span style="color: red" v-if="item.zyxcode == '2'">{{item.title}}</span> <span v-if="item.zyxcode != '2'">{{item.title}}</span> </span><span class="new-first-daiban-li-fire fa-quill" v-if="item.zyxcode == '2'"></span> <span class="new-first-daiban-li-fire fa-quill" v-if="item.zyxcode == '2'"></span> <span class="new-first-daiban-li-fire fa-quill" v-if="item.zyxcode == '2'"></span> <span class="right new-first-daiban-li-time">{{item.fbsj}}</span></li></ul></el-row></qz-scrollbar></div></el-col></el-row></el-col><el-col :span="7"><el-row class="personal-center-menu"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_cycz || '常用操作'}}</span> <span class="right fa-arrow-right2 new-first-more" @click="lspj(historyMenuList,'cycz')"></span> <span class="right fa-spinner11 new-first-refresh" @click="shuaxin"></span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><qz-scrollbar :height="380"><ul class="personal-center-menu-ul"><li class="personal-center-menu-li" v-for="(item,index) in historyMenuList" @click="goMenu(item.url)" v-if="index<12"><div class="personal-center-menu-tubiao" :class="muico[index]"></div><div>{{item.name}}</div></li></ul></qz-scrollbar></el-row><div style="border-bottom: 1px solid #ddd"></div><el-row class="personal-center-teaches"><div class="new-first-title"><span class="el-icon-document"></span>&nbsp; <span>{{resI18n.lb_jxjdap || '教学进度安排'}}</span><div style="width: 97%;border-bottom: 1px solid #f0eef6"></div></div><qz-scrollbar :height="360"><el-row style="padding-left: 50px"><template v-for="item in jxjd" :key="item"><div class="personal-center-teaches-arrange" v-if="item.ct.length > 0"><div class="personal-center-teaches-qiu" :style="item.ys" v-text="item.yf + '月'"></div><ul class="personal-center-teaches-ul"><li class="personal-center-teaches-li" v-for="temp in item.ct" :key="temp"><span class="personal-center-tongzhi-li-span" :class="{'color-danger' :item.zyxcode == '2'}" @click="showContent1(temp)">{{temp.qsrq + '~' + temp.jsrq}} {{temp.hdmcname1}}</span></li></ul></div></template></el-row></qz-scrollbar></el-row></el-col></el-row></div></el-form></div></script><script type="text/x-template" id="student-academic-progress-chartxyjc-template"><div>
+    <el-tabs v-model="activeName">
+        <el-tab-pane :label="resI18n.btn_akclbcx || '按课程类别查询'" name="first">
+        </el-tab-pane>
+        <el-tab-pane :label="resI18n.btn_axqjhcx || '按学期计划查询'" name="second">
+        </el-tab-pane>
+    </el-tabs>
+    <el-row style="margin-top: 10px">
+        <keep-alive>
+            <component :is="activeName" :datas="datas" @dataChange="dataChange"></component>
+        </keep-alive>
+    </el-row>
+</div>
+</script><script type="text/x-template" id="student-academic-progress-chartxyjc-course-category-template"><div v-cloak>
+    <span style="font-size:13px;">{{zymc + '专业学生毕业最低学分数为' + zxf + '学分，其中各类别课程及环节要求的学分数如下表： '}}</span>
+    <table class="el-table el-table--border" cellspacing="0" cellpadding="0" border="0">
+        <thead class="el-table__header-wrapper">
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_kclb || '课程类别'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_tsbx || '通识必修'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_xmhx || '学门核心'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_xlhx || '学类核心'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_zyhx || '专业核心'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_jzsj || '集中实践'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_zyxxkcz || '专业选修(分组课程)'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_qtxx || '专业选修(任选学分)'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_ksxq || '通识选修'}}</div>
+        </th>
+        <th class="is-center is-leaf" style="color: #178fe6">
+            <div class="cell">{{resI18n.lb_hj || '合计'}}</div>
+        </th>
+        </thead>
+        <tbody class="el-table__body">
+        <tr>
+            <td class="is-center">
+                <div class="cell" v-text="resI18n.lb_faxfs || '方案学分数'"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.tsbx == 0 ? '/' : xftjyq.tsbx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.xmhx == 0 ? '/' : xftjyq.xmhx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.xlhx == 0 ? '/' : xftjyq.xlhx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.zyhx == 0 ? '/' : xftjyq.zyhx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.jzsj == 0 ? '/' : xftjyq.jzsj"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.zyxxkcz == 0 ? '/' : xftjyq.zyxxkcz"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.qtxx == 0 ? '/' : xftjyq.qtxx"></div>
+            </td>
+
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.tsxx == 0 ? '/' : xftjyq.tsxx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="zxf == 0 ? '/' : zxf"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="is-center">
+                <div class="cell" v-text="resI18n.lb_yxxfs || '已修学分数'"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.tsbx == 0 ? '/' : xftjxj.tsbx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.xmhx == 0 ? '/' : xftjxj.xmhx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.xlhx == 0 ? '/' : xftjxj.xlhx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.zyhx == 0 ? '/' : xftjxj.zyhx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.jzsj == 0 ? '/' : xftjxj.jzsj"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.zyxxkcz == 0 ? '/' : xftjxj.zyxxkcz"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.qtxx == 0 ? '/' : xftjxj.qtxx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjxj.tsxx == 0 ? '/' : xftjxj.tsxx"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="yxxfs == 0 ? '/' : yxxfs"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="is-center">
+                <div class="cell" v-text="resI18n.lb_wwcxfs || '未完成学分数'"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.tsbx == 0 ? '/' : (xftjyq.tsbx - xftjxj.tsbx) "></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.xmhx == 0 ? '/' : (xftjyq.xmhx - xftjxj.xmhx)"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.xlhx == 0 ? '/' : (xftjyq.xlhx - xftjxj.xlhx)"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.zyhx == 0 ? '/' : (xftjyq.zyhx - xftjxj.zyhx)"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.jzsj == 0 ? '/' : (xftjyq.jzsj - xftjxj.jzsj)"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.zyxxkcz == 0 ? '/' : (xftjyq.zyxxkcz - xftjxj.zyxxkcz)"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.qtxx == 0 ? '/' : (xftjyq.qtxx - xftjxj.qtxx)"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="xftjyq.tsxx  == 0 ? '/' :(xftjyq.tsxx - xftjxj.tsxx)"></div>
+            </td>
+            <td class="is-center">
+                <div class="cell" v-text="zxf  == 0 ? '/' : Math.abs(zxf - yxxfs)"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <span style="font-size:15px;font-weight: bold;color: red">{{resI18n.lb_zhu || '注'}}：</span>
+    <span style="font-size:15px;font-weight: bold;color: #FF9933">{{resI18n.lb_zhushi || '学业进展表不作为毕业审核要求，仅供学生修课选课参考。'}}</span>
+    <table class="el-table el-table--border" cellspacing="0" cellpadding="0" border="0">
+        <caption style="margin-top: 10px;margin-bottom: 10px">
+            <span style="font-size:20px;font-weight: bold;">{{resI18n.lb_wdxyjzb || '我的学业进展表'}}</span>
+            <span>{{resI18n.lb_akclbpx || '(按课程类别排序）'}}</span>
+        </caption>
+        <tbody class="el-table__body">
+        <template v-if="tableObj.tsbxkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_tsbx || '通识必修'}}</span>
+                    <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.tsbx}}
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '1'">
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.tsbxkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+        <template v-if="tableObj.xmhxkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_xmhx || '学门核心'}}</span>
+                    <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.xmhx}}
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '2'">
+                           <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.xmhxkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+        <template v-if="tableObj.xlhxkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_xlhx || '学类核心'}}</span>
+                    <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.xlhx}}
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '3'">
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.xlhxkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+
+        <template v-if="tableObj.zyhxkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_zyhx || '专业核心'}}</span>
+                    <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.zyhx}}
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '4'">
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.zyhxkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+        <template v-if="tableObj.jzsjkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_jzsj || '集中实践'}}</span>
+                    <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.jzsj}}
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '5'">
+                           <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.jzsjkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+
+        <template v-if="tableObj.xkzkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_zyxxFz || '专业选修(分组课程)'}}</span>
+                    <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.zyxxkcz}}
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '6'">
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.xkzkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+
+        <template v-if="tableObj.qtkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_zyxxRx || '专业选修(任选学分)'}}</span>
+                   <!-- <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.qtxx}}-->
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '7'">
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <!--<span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}-->
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.qtkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+
+        <template v-if="tableObj.tsxxkcList.length > 0">
+            <tr>
+                <td colspan='11'>
+                    <span style="font-weight:bold">{{resI18n.lb_kclb || '课程类别'}}：{{resI18n.lb_tsxx || '通识选修'}}</span>
+                    <span style="font-weight:bold;margin-left: 20px">{{resI18n.lb_xfyq || '学分要求：'}}</span> {{xftjyq.tsxx}}
+                    <span v-for="tx in footData" :key="tx" v-if="tx.kccode == '8'">
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_xj || '小计：'}}</span>{{tx.xfs}}
+                            <span style="margin-left:30px;font-weight:bold">{{resI18n.lb_tgqk || ' 通过情况：'}}</span>{{tx.sftg}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xh || '序号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcbh || '课程编号'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcmc || '课程名称'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xf || '学分数'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_kcsx || '性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_xdxq || '修读学期'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_ksxzname || '考试性质'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zcj || '总成绩'}}</div>
+                </th>
+                <th class="is-center is-leaf" style="color: #178fe6">
+                    <div class="cell">{{resI18n.lb_zt || '状态'}}</div>
+                </th>
+            </tr>
+            <tr v-for="(value,index) in tableObj.tsxxkcList" :key="value" :style="{backgroundColor: colorBackground(value)}">
+                <td>
+                    <div class="cell" v-text="index+1"></div>
+                </td>
+                <td>
+                    <div class="cell" v-text="value.kcbh"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kc_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xf"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.kcxz_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.xnxq_name"></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.ksxz_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text="value.zcj_name" ></div>
+                </td>
+                <td class="is-center">
+                    <div class="cell" v-text=""><span :style="{color: colorHgzt(value) }">{{hgzt(value)}}</span></div>
+                </td>
+                </td>
+            </tr>
+        </template>
+        <template >
+            <tr>
+                <td colspan='11'><span style="font-weight:bold">{{resI18n.lb_fhsm || '符号说明：'}}</span>{{resI18n.lb_sm ||
+                    '*表示补考，▲表示重修,状态中√表示已通过。'}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan='11'><span style="font-weight:bold">{{resI18n.lb_zhu2 || '注：'}}</span>{{resI18n.lb_sms ||
+                    '部分分散进行的课程，成绩只录入指定学期，若相应未录成绩学期修课状态显示"在修中"属正常情况，不影响毕业审核，具体可咨询开课单位。'}}
+                </td>
+            </tr>
+        </template>
+        </tbody>
+    </table>
+</div>
+</script></body></html>
